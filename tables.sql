@@ -174,3 +174,24 @@ VALUES (1, 1, 1, 950.00),
 INSERT INTO order_history (order_id, status_id)
 VALUES (1, 1), (2, 3);       
 
+-- USERS AND ROLES
+USE bookstoredb;
+-- Create user
+CREATE USER 'Mumbi' @'localhost'
+IDENTIFIED BY '1234';
+CREATE USER 'Maloba'@'localhost'
+IDENTIFIED BY '1235';
+
+
+
+-- -- Create Roles
+CREATE ROLE admin,clients,dev;
+
+-- -- Assign Roles
+GRANT ALL ON bookstoredb.* TO dev;
+GRANT SELECT ON bookstoredb.* TO clients;
+GRANT INSERT,SELECT,DELETE,UPDATE ON bookstoredb.* TO admin;
+
+-- adding users to role
+GRANT admin TO'Maloba'@'localhost';
+GRANT dev TO 'Mumbi'@'localhost';
